@@ -5,8 +5,6 @@ import hashlib
 def parseHttp(connection: socket.socket):
     try:
         header = connection.recv(4096)
-        if header == b"":
-            raise Exception(f"empty header, {header}")
         headerParts = header.split()
         method = headerParts[0]
         dst = headerParts[1]
