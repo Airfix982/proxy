@@ -1,5 +1,6 @@
 import socket as socket
 import threading
+import os
 from socket import AF_INET, SOCK_STREAM
 
 from src.server.http_parser import parseHttp
@@ -20,8 +21,8 @@ def listenNewConnection(address: str, port: int, config):
 
 
 def main(config):
-    address = '127.0.0.1'
-    port = 8888
+    address = '0.0.0.0'
+    port = int(os.getenv("PORT", "8888"))
     connetction = listenNewConnection(address, port, config)
 
 
