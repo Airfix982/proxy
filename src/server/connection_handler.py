@@ -6,13 +6,16 @@ from src.server.tunnel import setConnection
 from src.server.transfer import transferData
 
 def handleConnection(connection, address, config):
+    print("conn handeling")
     dstDomain, dstPort, method, protocol, login, pwdHash = parseHttp(connection)
     if method == b'CONNECT':
         dstIp = getIpByDomain(dstDomain)
         srcIp, srcPort = address
-        if not handleAuth(connection, srcIp, dstIp, config, login, pwdHash):
-            return
+        # if not handleAuth(connection, srcIp, dstIp, config, login, pwdHash):
+        #     return
+        print("set conn")
         dstSock = setConnection(dstIp, int(dstPort))
+        print("conn set succ")
         noteHost(connection, srcIp)
         transferData(connection, dstSock)
     else:
@@ -34,6 +37,7 @@ def noteHost(conn, ip):
         conn.sendall(
             b"HTTP/1.1 200 Connection Established\r\n\r\n"
         )
+        print("connection establisged")
     except:
         pass
 

@@ -12,13 +12,15 @@ def listenNewConnection(address: str, port: int, config):
         maxConnections = 20
         while True:
             sock.listen(maxConnections)
+            print(f"Listening on {address}:{port}")
             conn, addr = sock.accept()
+            print("accepted")
             thread = threading.Thread(target=handleConnection, kwargs={'connection': conn, 'address': addr, 'config': config})
             thread.start()
 
 
 def main(config):
-    address = '0.0.0.0'
+    address = '127.0.0.1'
     port = 8888
     connetction = listenNewConnection(address, port, config)
 

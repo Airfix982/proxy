@@ -18,7 +18,7 @@ def checkIfBanned(src, dst, config):
     
 def authorize(conn, srcIp, config, login, pwdHash):
     if login is None or pwdHash is None:
-        requestAuthorization(conn, srcIp)
+        requestAuthorization(conn)
     if checkAuth(login, pwdHash, config["PROXY_PASSWORD_HASH"], config["PROXY_LOGIN"]):
         return True
     else:
