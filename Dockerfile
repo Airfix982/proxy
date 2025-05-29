@@ -4,7 +4,6 @@ WORKDIR /app
 
 COPY ./src ./src
 COPY configure.py .
-COPY .env .
 COPY requirements.txt .
 
 RUN pip install --no-cache -r requirements.txt
