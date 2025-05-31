@@ -4,7 +4,9 @@ import hashlib
 
 def parseHttp(connection: socket.socket):
     try:
+        print("Incoming connection")
         header = connection.recv(4096)
+        print(f"Header raw:\n{header}")
         headerParts = header.split()
         method = headerParts[0]
         dst = headerParts[1]
