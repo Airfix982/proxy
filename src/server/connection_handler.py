@@ -18,13 +18,6 @@ def handleConnection(connection, address, config):
         print("conn set succ")
         noteHost(connection, srcIp)
         transferData(connection, dstSock)
-    elif method == b'GET':
-        connection.sendall(
-            b"HTTP/1.1 200 OK\r\n"
-            b"Content-Type: text/plain\r\n\r\n"
-            b"Proxy up"
-        )
-        connection.close()
     else:
         handleBadMethod(connection)
         return
